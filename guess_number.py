@@ -83,4 +83,5 @@ def guess_number():
     return guess_number
 
 if __name__ == "__main__":
-    guess_number()
+    guess = guess_number()
+    guess()
