@@ -20,17 +20,20 @@ def guess_number():
 
         computer = random.randint(1,10)
         player = input("\nPlease choose a number between 1 and 10 :\n")
-        total_games += 1
         
-        if int(player) >= 1 and int(player) <= 10:
-            if computer == int(player):
-                player_wins += 1
-                print(f"🎉 Bravo {player_name}, you won ! 🎉")
+        try:
+            if int(player) >= 1 and int(player) <= 10:
+                if computer == int(player):
+                    total_games += 1
+                    player_wins += 1
+                    print(f"🎉 Bravo {player_name}, you won ! 🎉")
+                else:
+                    print(f"🥺 Sorry {player_name}, you lost... 🥺")
             else:
-                print(f"🥺 Sorry {player_name}, you lost... 🥺")
-        else:
-            print(f"\nSorry {player_name}, invalid input...")
-            return start_game()
+                print(f"\nSorry {player_name}, invalid input...")
+                return start_game()
+        except Exception as error:
+            print("Please, put in a number between 1 and 10, but nothin else.")
 
         while True:
             replay = input("\nDo you want to replay ? Press Y for Yes or,\nRules to see the rules or,\nanything else to quit.\n")
@@ -65,8 +68,8 @@ def guess_number():
         last_winning_streak = stats.readline()
         last_total_games = stats.readline()
         stats.close()
-        print(f"The last winning streak for this game is {last_winning_streak[-2]}.")
-        print(f"For a total of {last_total_games[-2]} games.")
+        print(f"📶 The last winning streak for this game is {last_winning_streak[-2]}.")
+        print(f"📶 For a total of {last_total_games[-2]} games.")
     except Exception as e:
         raise e
     
