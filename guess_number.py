@@ -45,14 +45,30 @@ def guess_number():
                 print(f"🎲 You played {total_games} games. 🎲")
                 print(f"💪 You won {player_wins} games. GG ! 💪")
 
-                file = open("best_scores.txt", "w")
-                file.write(f"'Guess my number' winning streak : {player_wins}\n")
-                file.write(f"'Guess my number' total games : {total_games}\n")
+                file = open("best_scores.txt")
+                last_best = file.readline()
                 file.close()
+
+                if player_wins >= int(last_best[-2]):
+                    file = open("best_scores.txt", "w")
+                    file.write(f"'Guess my number' winning streak : {player_wins}\n")
+                    file.write(f"'Guess my number' total games : {total_games}\n")
+                    file.close()
 
                 sys.exit(f"Bye {player_name} ! 👋")
 
                 break
+  
+    try:
+        os.path.isfile("best_scores.txt")
+        stats = open("best_scores.txt")
+        last_winning_streak = stats.readline()
+        last_total_games = stats.readline()
+        stats.close()
+        print(f"The last winning streak for this game is {last_winning_streak[-2]}.")
+        print(f"For a total of {last_total_games[-2]} games.")
+    except Exception as e:
+        raise e
     
     rules = input("\nDo you need the rules of the game ?\nPress Y for Yes or,\nanything else for No.\n")
     if rules.lower() == "y":
@@ -60,17 +76,6 @@ def guess_number():
         start_game()
     else:
         return start_game()
-    
-    try:
-        os.path.isfile("best_scores.txt")
-        stats = open("best_scores.txt")
-        last_winning_streak = stats.readline()
-        last_total_games = stats.readline()
-        stats.close()
-        print(f"The last winning streak for this game is {last_winning_streak[-1]}.")
-        print(f"For a total of {last_total_games[-1]} games.")
-    except Exception as e:
-        raise e
     
     return guess_number
 

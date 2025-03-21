@@ -1,2 +1,2 @@
-'Guess my number' winning streak : 2
-'Guess my number' total games : 9
+'Guess my number' winning streak : 1
+'Guess my number' total games : 1
