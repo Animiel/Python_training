@@ -30,4 +30,5 @@ def arcade():
     
     return arcade
 
-arcade()
+if __name__ == "__main__":
+    arcade()

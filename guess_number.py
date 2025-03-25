@@ -1,6 +1,7 @@
 import sys
 import random
 import os
+import arcade
 
 def guess_number():
 
@@ -58,7 +59,8 @@ def guess_number():
                     file.write(f"'Guess my number' total games : {total_games}\n")
                     file.close()
 
-                sys.exit(f"Bye {player_name} ! 👋")
+                print(f"Bye {player_name} ! 👋")
+                arcade.arcade()
 
                 break
   
