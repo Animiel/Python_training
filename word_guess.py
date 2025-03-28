@@ -13,34 +13,40 @@ def word_guess():
         nonlocal words
         nonlocal test_words
         mistakes = 0
+        x = 0
+        letter_position = []
 
         # choosing a word from the list
         computer = random.choice(test_words)
         print(computer)
         # hiding the letters for the player
-        mystery_word = "_" * len(computer)
+        mystery_word = "_" * len(computer.lower())
 
-        # Actually while doesn't work -> code doesn't stop when no _ are in mystery_word or mistakes are over >= 3
-        # Hypothesis : while takes mystery_word outside the code so letters never change
-        # Solution : try to apply changes on mystery_word outside loop too ?
-        while "_" in mystery_word or mistakes < 3:
+        while mistakes < 3:
             # showing player what it must find
             print(mystery_word)
             # asking player to choose a letter
             player_choice = input("\n✏️   Please choose a letter to try :\n")
             try:
-                # Is operationnal but only if the right letter with case sensitivity is putted in, if wrong letter (Upper or lower case sensitivity included : H != h) is input adds 'mystery_word' to string
                 # verifying if player inserted only one character
                 if len(player_choice) == 1:
                     # verifying if the player choice is in the word
                     if player_choice.lower() in computer.lower():
-                        # if it is, search for its position
-                        letter_position = computer.find(player_choice)
-                        # replaces _ at the first occurence of the matching player input
-                        mystery_word = mystery_word[:letter_position] + player_choice + mystery_word[letter_position + 1:]
-                    # code actually doesn't get here with a wrong guess from player
+                        computer = list(computer.lower())
+                        print(computer)
+                        mystery_word = list(mystery_word)
+                        print(mystery_word)
+                        while x < len(computer):
+                            if computer[x] == player_choice.lower():
+                                letter_position.append(x)
+                            x += 1
+                        for x in letter_position:
+                            mystery_word[x] = player_choice.lower()
+                        letter_position.clear()
+                        computer = str(computer)
+                        mystery_word = str(mystery_word)
                     # if the letter is not in the word adds a mistake
-                    else:
+                    elif player_choice.lower() not in computer.lower():
                         mistakes += 1
                         print("\n🥺  Oh no, that's not in the word...\n👍  Guess again !")
                 # if player inserts more characters, returning a message
