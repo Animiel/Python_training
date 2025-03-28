@@ -31,24 +31,24 @@ def word_guess():
                 # verifying if player inserted only one character
                 if len(player_choice) == 1:
                     # verifying if the player choice is in the word
-                    if player_choice.lower() in computer.lower():
-                        computer = list(computer.lower())
-                        print(computer)
-                        mystery_word = list(mystery_word)
-                        print(mystery_word)
+                    computer = list(computer.lower())
+                    print(computer)
+                    mystery_word = list(mystery_word)
+                    print(mystery_word)
+                    if player_choice.lower() in computer:
                         while x < len(computer):
                             if computer[x] == player_choice.lower():
                                 letter_position.append(x)
                             x += 1
                         for x in letter_position:
                             mystery_word[x] = player_choice.lower()
-                        letter_position.clear()
-                        computer = str(computer)
-                        mystery_word = str(mystery_word)
                     # if the letter is not in the word adds a mistake
-                    elif player_choice.lower() not in computer.lower():
+                    elif player_choice.lower() not in computer:
                         mistakes += 1
                         print("\n🥺  Oh no, that's not in the word...\n👍  Guess again !")
+                    letter_position.clear()
+                    computer = "".join(map(str, computer))
+                    mystery_word = "".join(map(str, mystery_word))
                 # if player inserts more characters, returning a message
                 else:
                     print("❌  Please input ONE LETTER between A and Z. Numbers or special characters are not allowed. Thank you.")
