@@ -75,6 +75,7 @@ def word_guess():
             # if not, game ends
             else:
                 print("\n❤️  Thanks for playing ! ❤️")
+                arcade.arcade()
                 break
     
 
@@ -91,5 +92,5 @@ def word_guess():
     return word_guess
 
 
-
-word_guess()
+if __name__ == "__main__":
+    word_guess()

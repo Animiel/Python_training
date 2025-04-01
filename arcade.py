@@ -1,11 +1,12 @@
 from enum import Enum
 import guess_number
+import word_guess
 
 def arcade():
 
     class Games(Enum):
         Guess_my_number = 1
-        Test1 = 2
+        Word_Guess = 2
         Test2 = 3
 
     # making a enumerated list of the games availbale
@@ -27,6 +28,8 @@ def arcade():
             # actually only one game available, so if picking it, launches the game
             if int(player_choice) == 1:
                 guess_number.guess_number()
+            elif int(player_choice) == 2:
+                word_guess.word_guess()
         # if input is anything else, asking player to choose between the games available
         except Exception:
             print(f"Please choose a number between {games[0].value} and {len(games)}")
