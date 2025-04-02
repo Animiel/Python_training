@@ -40,15 +40,21 @@ def snake_game():
         fl_row = finish_line["position"][0]
         fl_col = finish_line["position"][1]
 
-        for rows in game_board:
-            game_board[bs_row][bs_col] = "p"
-            game_board[fk_row][fk_col] = "k"
-            game_board[fl_row][fl_col] = "f"
+        game_board[bs_row][bs_col] = " ◼️  "
+        game_board[fk_row][fk_col] = " 🗝️  "
+        game_board[fl_row][fl_col] = " 🏁  "
 
-            for element in rows:
+        for lists in game_board:
+            for element in lists:
                 if element == "":
-                    element = "c"
-                    print(element)
+                    element = " ◻️  "
+                    game_board[x][y] = element
+                y += 1
+            y = 0
+            x += 1
+        
+        print(game_board)
+                
     
 
 
