@@ -40,20 +40,73 @@ def snake_game():
         fl_row = finish_line["position"][0]
         fl_col = finish_line["position"][1]
 
-        game_board[bs_row][bs_col] = " ◼️  "
-        game_board[fk_row][fk_col] = " 🗝️  "
-        game_board[fl_row][fl_col] = " 🏁  "
+        def filling_grid():
+            nonlocal x
+            nonlocal y
 
-        for lists in game_board:
-            for element in lists:
-                if element == "":
-                    element = " ◻️  "
-                    game_board[x][y] = element
-                y += 1
-            y = 0
-            x += 1
+            game_board[bs_row][bs_col] = "◼️  "
+            game_board[fk_row][fk_col] = "🗝️  "
+            game_board[fl_row][fl_col] = "🏁  "
+
+            for lists in game_board:
+                for element in lists:
+                    if element == "":
+                        element = "◻️  "
+                        game_board[x][y] = element
+                    y += 1
+                print(game_board[x])
+                y = 0
+                x += 1
         
-        print(game_board)
+        def moving_in_grid():
+            nonlocal bs_col
+            nonlocal bs_row
+            nonlocal fk_col
+            nonlocal fk_row
+            nonlocal fl_col
+            nonlocal fl_row
+            nonlocal x
+            nonlocal y
+
+            x = 0
+            y = 0
+
+            player = input("\nWhere do you want to move ?\nR for ➡️   RIGHT ➡️  ,\nL for ⬅️   LEFT ⬅️  ,\nU for ⬆️   UP ⬆️  ,\nD for ⬇️   DOWN ⬇️\n")
+            print(player)
+            if player.lower() == "r":
+                game_board[bs_row][bs_col] = "◻️  "
+                bs_col += 1
+                if bs_col > 4:
+                    bs_col = 0
+                filling_grid()
+                moving_in_grid()
+            elif player.lower() == "l":
+                game_board[bs_row][bs_col] = "◻️  "
+                bs_col -= 1
+                if bs_col < 0:
+                    bs_col = 4
+                filling_grid()
+                moving_in_grid()
+            elif player.lower() == "u":
+                game_board[bs_row][bs_col] = "◻️  "
+                bs_row -= 1
+                if bs_row < 0:
+                    bs_row = 3
+                filling_grid()
+                moving_in_grid()
+            elif player.lower() == "d":
+                game_board[bs_row][bs_col] = "◻️  "
+                bs_row += 1
+                if bs_row > 3:
+                    bs_row = 0
+                filling_grid()
+                moving_in_grid()
+            else:
+                print("\n❌  Please input a valid letter. ❌")
+                moving_in_grid()
+        
+        filling_grid()
+        moving_in_grid()
                 
     
 
