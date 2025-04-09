@@ -1,5 +1,6 @@
 import arcade
 import random
+import sys
 
 def snake_game():
 
@@ -103,13 +104,11 @@ def snake_game():
                     game_board[fk_row][fk_col] = "◼️  "
                     # player gets the key in "inventory"
                     black_square["has_key"] = True
-                    # showing the updated rows
-                    # couldn't use filling_grid() as it would place the key cell again, it's not really a problem for the code right now, but visually it has no sense
-                    for lists in game_board:
-                        print(lists)
-                else:
-                    # else showing the grid after the changes
-                    filling_grid()
+                if game_board[bs_row][bs_col] == game_board[fl_row][fl_col] and black_square["has_key"] == True:
+                    print("\n🎉   GG, you won ! 🎉")
+                    sys.exit()
+                # showing the grid after the changes
+                filling_grid()
                 # continue moving around the grid
                 moving_in_grid()
             # same mechanics as above but adapted to the movements
@@ -122,10 +121,10 @@ def snake_game():
                 if bs_col == fk_col and bs_row == fk_row:
                     game_board[fk_row][fk_col] = "◼️  "
                     black_square["has_key"] = True
-                    for lists in game_board:
-                        print(lists)
-                else:
-                    filling_grid()
+                if game_board[bs_row][bs_col] == game_board[fl_row][fl_col] and black_square["has_key"] == True:
+                    print("\n🎉   GG, you won ! 🎉")
+                    sys.exit()
+                filling_grid()
                 moving_in_grid()
             elif player.lower() == "u":
                 game_board[bs_row][bs_col] = "◻️  "
@@ -136,10 +135,10 @@ def snake_game():
                 if bs_col == fk_col and bs_row == fk_row:
                     game_board[fk_row][fk_col] = "◼️  "
                     black_square["has_key"] = True
-                    for lists in game_board:
-                        print(lists)
-                else:
-                    filling_grid()
+                if game_board[bs_row][bs_col] == game_board[fl_row][fl_col] and black_square["has_key"] == True:
+                    print("\n🎉   GG, you won ! 🎉")
+                    sys.exit()
+                filling_grid()
                 moving_in_grid()
             elif player.lower() == "d":
                 game_board[bs_row][bs_col] = "◻️  "
@@ -150,10 +149,10 @@ def snake_game():
                 if bs_col == fk_col and bs_row == fk_row:
                     game_board[fk_row][fk_col] = "◼️  "
                     black_square["has_key"] = True
-                    for lists in game_board:
-                        print(lists)
-                else:
-                    filling_grid()
+                if game_board[bs_row][bs_col] == game_board[fl_row][fl_col] and black_square["has_key"] == True:
+                    print("\n🎉   GG, you won ! 🎉")
+                    sys.exit()
+                filling_grid()
                 moving_in_grid()
             # if wrong direction input, rebooting the choice
             else:
