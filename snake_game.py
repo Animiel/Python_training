@@ -42,15 +42,15 @@ def snake_game():
         fl_row = finish_line["position"][0]
         fl_col = finish_line["position"][1]
 
+        # positionning special cells first in the game grid
+        game_board[bs_row][bs_col] = "◼️  "
+        game_board[fk_row][fk_col] = "🗝️  "
+        game_board[fl_row][fl_col] = "🏁  "
+
         # filling the rest of the grid function
         def filling_grid():
             nonlocal x
             nonlocal y
-
-            # positionning special cells first in the game grid
-            game_board[bs_row][bs_col] = "◼️  "
-            game_board[fk_row][fk_col] = "🗝️  "
-            game_board[fl_row][fl_col] = "🏁  "
 
             # filling the rest of the grid with blank cells
             # for each line
@@ -96,6 +96,7 @@ def snake_game():
                 # if position reaches out of range, placing the player to the beginning of the row
                 if bs_col > 4:
                     bs_col = 0
+                game_board[bs_row][bs_col] = "◼️  "
                 # if player gets on the exit key cell (could have made the condition that way too : if game_board[bs_row][bs_col] == game_board[fk_row][fk_col])
                 if bs_col == fk_col and bs_row == fk_row:
                     # replacing the key cell by player cell
@@ -117,6 +118,7 @@ def snake_game():
                 bs_col -= 1
                 if bs_col < 0:
                     bs_col = 4
+                game_board[bs_row][bs_col] = "◼️  "
                 if bs_col == fk_col and bs_row == fk_row:
                     game_board[fk_row][fk_col] = "◼️  "
                     black_square["has_key"] = True
@@ -130,6 +132,7 @@ def snake_game():
                 bs_row -= 1
                 if bs_row < 0:
                     bs_row = 3
+                game_board[bs_row][bs_col] = "◼️  "
                 if bs_col == fk_col and bs_row == fk_row:
                     game_board[fk_row][fk_col] = "◼️  "
                     black_square["has_key"] = True
@@ -143,6 +146,7 @@ def snake_game():
                 bs_row += 1
                 if bs_row > 3:
                     bs_row = 0
+                game_board[bs_row][bs_col] = "◼️  "
                 if bs_col == fk_col and bs_row == fk_row:
                     game_board[fk_row][fk_col] = "◼️  "
                     black_square["has_key"] = True
